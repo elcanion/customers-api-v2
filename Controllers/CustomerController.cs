@@ -4,6 +4,7 @@ using PloomesTest.Models;
 using PloomesTest.Data;
 using System.Reflection;
 using AutoMapper;
+using System.Net.Mail;
 
 
 namespace PloomesTest.Controllers
@@ -85,6 +86,14 @@ namespace PloomesTest.Controllers
             IMapper mapper = configuration.CreateMapper();
             var customer = mapper.Map<CustomerDTO, Customer>(toCreate);
 
+            if (customer.Email.EndsWith("."))
+            {
+                return BadRequest("Bad format for the email.");
+            }
+            if (customer.Phone.EndsWith("."))
+            {
+                return BadRequest("Bad format for the phone.");
+            }
             await _context.Customers.AddAsync(customer);
             await _context.SaveChangesAsync();
             return Created(new Uri($"{Request.Path}/customer.Id", UriKind.Relative), toCreate);

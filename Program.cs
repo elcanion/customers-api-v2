@@ -35,7 +35,7 @@ builder.Services.AddControllers();
 builder.Services.AddSqlServer<DataContext>(connectionString);
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ploomes API", Description = "Written by me, João Victor. I wrote it with C# and integrated it to SQL Server. Reach me on github: https://github.com/elcanion", Version = "v1"}); 
+    c.SwaggerDoc("v2", new OpenApiInfo { Title = "Ploomes API", Description = "Written by me, João Victor. I wrote it with C# and integrated it to SQL Server. Reach me on github: https://github.com/elcanion", Version = "v2"}); 
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.XML";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             
@@ -52,7 +52,7 @@ app.UseCors("AnyOrigin");
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ploomes API V1");
+    c.SwaggerEndpoint("/swagger/v2/swagger.json", "Ploomes API V2");
     c.RoutePrefix = string.Empty;
 });
 
