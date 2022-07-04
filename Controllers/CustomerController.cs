@@ -157,7 +157,7 @@ namespace PloomesTest.Controllers
             if (customer is null) return BadRequest("Couldn't find customer.");
             _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
-            return Ok(await _context.Customers.ToListAsync());
+            return Ok(await _context.Customers.Include("Address").ToListAsync());
         }
         
     }
