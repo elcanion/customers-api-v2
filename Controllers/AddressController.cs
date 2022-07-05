@@ -22,7 +22,7 @@ namespace PloomesTest.Controllers
         [ProducesResponseType(200)]
         public async Task<ActionResult<List<AddressDTO>>> Read()
         {
-            var result = await _context.Addresses.ToListAsync();
+            var result = await _context.Addresses.AsNoTracking().ToListAsync();
             return Ok(result);
         }
 

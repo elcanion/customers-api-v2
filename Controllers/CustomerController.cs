@@ -49,6 +49,7 @@ namespace PloomesTest.Controllers
         {
             var customer = await _context.Customers
                 .Include(p => p.Address)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(p => p.Id == id);
             if (customer is null) return BadRequest("Customer not found.");
             return Ok(customer);
